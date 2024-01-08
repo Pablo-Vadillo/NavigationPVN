@@ -1,18 +1,16 @@
 import React from 'react';
-import { View, StyleSheet, Image, Text } from 'react-native';
+import { View, StyleSheet, Image, Text, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import Bienvenida from '../screens/Bienvenida';
 import Login from '../screens/Login';
-import Portfolio from '../screens/Portfolio';
 import { userContext } from './UserContext';
 import BootonTabs from './BootonTabs';
 
 const backgroundHeader = require("../assets/background.png");
 const Drawer = createDrawerNavigator();
-
 const DrawerModificaction = {
   headerShown: false,
 };
@@ -21,7 +19,6 @@ const CustomDrawerContent: React.FC<{ navigation: any }> = ({ navigation }) => {
   const {isLogged} = React.useContext(userContext)
 
   return (
-
     <DrawerContentScrollView style={styles.drawerContainer}>
       <DrawerItem
         label="Inicio"
@@ -50,7 +47,7 @@ const AppDrawer = () => {
   return (
     <View style={styles.container}>
       <SafeAreaView style={styles.headerContainer}>
-        <Image source={backgroundHeader} style={styles.backgroundImage} resizeMode="cover" />
+        <Image source={backgroundHeader} style={styles.backgroundImage} resizeMode="cover"/>
         <Text style={styles.headerTitle}>Portfolio Pablo Vadillo</Text>
       </SafeAreaView>
 
