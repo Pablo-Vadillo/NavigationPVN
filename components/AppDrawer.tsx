@@ -8,11 +8,12 @@ import Bienvenida from '../screens/Bienvenida';
 import Login from '../screens/Login';
 import { userContext } from './UserContext';
 import BootonTabs from './BootonTabs';
+import Register from '../screens/Register';
 
 const backgroundHeader = require("../assets/background.png");
 const Drawer = createDrawerNavigator();
 const DrawerModificaction = {
-  headerShown: false,
+  swipeEdgeWidth: 0,
 };
 
 const CustomDrawerContent: React.FC<{ navigation: any }> = ({ navigation }) => {
@@ -46,11 +47,6 @@ const CustomDrawerContent: React.FC<{ navigation: any }> = ({ navigation }) => {
 const AppDrawer = () => {
   return (
     <View style={styles.container}>
-      <SafeAreaView style={styles.headerContainer}>
-        <Image source={backgroundHeader} style={styles.backgroundImage} resizeMode="cover"/>
-        <Text style={styles.headerTitle}>Portfolio Pablo Vadillo</Text>
-      </SafeAreaView>
-
       <NavigationContainer>
         <Drawer.Navigator
           initialRouteName="Inicio"
@@ -59,7 +55,9 @@ const AppDrawer = () => {
         >
           <Drawer.Screen name="Inicio" component={Bienvenida} />
           <Drawer.Screen name="Login" component={Login} />
+          <Drawer.Screen name="Register" component={Register} />
           <Drawer.Screen name="Portfolio" component={BootonTabs} />
+
         </Drawer.Navigator>
       </NavigationContainer>
     </View>
@@ -71,9 +69,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     flex: 1,
   },
+
   drawerContainer: {
     flex: 1,
     backgroundColor: 'white',
+
   },
   headerContainer: {
     flexDirection: 'row',

@@ -3,9 +3,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Alert, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { userContext } from '../components/UserContext';
 import { Register } from '../types/UserTypes';
-import { getLoginUser } from '../services/LoginService';
-
-
+import { postRegisteredUser } from '../services/LoginService';
 
 const background = require("../assets/background.png");
 
@@ -20,31 +18,30 @@ const Login: React.FC<LoginProp> = ({ navigation }) => {
     userFunc({ ...user, [field]: value });
   }
 
-  const handleLogin = async () => {
-    const loginUser: Register = {
+  const handleRegister = async () => {
+    const registeredUser: Register = {
       name: user.name,
       email: user.email,
       password: user.password
     };
 
-    if (!loginUser.name || !loginUser.password) {
+    if (!registeredUser.name || !registeredUser.email || !registeredUser.password) {
       Alert.alert("ERROR: VALORES NO VÁLIDOS");
     } else {
       try {
-        const newUser: Register = await getLoginUser(loginUser);
+        const newUser: Register = await postRegisteredUser(registeredUser);
 
         if (newUser) {
-          Alert.alert(`Inicio de sesión exitoso: ${newUser.name}`);
+          Alert.alert(`Usuario registrado: ${newUser.name}`);
           userFunc(newUser);
           toggleLogin();
           navigation.navigate("Inicio");
         } else {
-          Alert.alert(`ERROR: Credenciales incorrectas ${loginUser.name} ${loginUser.password} ${loginUser.email}`);
-
+          Alert.alert("ERROR: Fallo en el registro");
         }
       } catch (error) {
-        console.error("Error al realizar el inicio de sesión:", error);
-        Alert.alert("ERROR: Fallo en el inicio de sesión");
+        console.error("Error al registrar usuario:", error);
+        Alert.alert("ERROR: Fallo en el registro");
       }
     }
   };
@@ -54,15 +51,17 @@ const Login: React.FC<LoginProp> = ({ navigation }) => {
       <ImageBackground source={background} resizeMode="cover" style={styles.backgroundImage} />
       <View style={styles.viewButtons}>
         <Text style={styles.subtitleText}>Introduce tus datos</Text>
-        <TextInput style={styles.inputText} placeholder="Nombre" value={user.name} onChangeText={name => handleInputChange("name", name)} />
+        <TextInput style={styles.inputText} placeholder="Email" value={user.email} onChangeText={email => handleInputChange("email", email)} />
+        <TextInput style={styles.inputText} placeholder="Usuario" value={user.name} onChangeText={userName => handleInputChange("name", userName)} />
         <TextInput style={styles.inputText} placeholder="Contraseña" value={user.password} secureTextEntry={true} onChangeText={password => handleInputChange("password", password)} />
-        <TouchableOpacity style={styles.submit} onPress={() => handleLogin()}>
-          <Text style={styles.textButton}>Iniciar Sesión</Text>
+        <TouchableOpacity style={styles.submit} onPress={() => handleRegister()}>
+          <Text style={styles.textButton}>Registrar</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 };
+
 
 export default Login;
 

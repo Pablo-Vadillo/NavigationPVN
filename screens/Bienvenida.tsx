@@ -16,15 +16,23 @@ const Bienvenida:React.FC<BienvenidaProp>=({navigation})=> {
 <ImageBackground 
       source={background} resizeMode='cover' style={styles.backgroundImage}>
         <View style={styles.viewBottons}>
-          {isLogged ?<Text style= {styles.overtitleText}>Hola {user}</Text>:
+          {isLogged ?<Text style= {styles.overtitleText}>Hola {user.name}</Text>:
           null}
           <Text style= {styles.overtitleText}>Soy</Text>
           <Text style={styles.titleText}>Vadillo</Text>
           <Text style= {styles.subtitleText}> Bienvenido a mi portfolio.</Text>
           
-          {isLogged ?<Text style= {styles.overtitleText}>Ya estas Logeado</Text>:
-          <TouchableOpacity style={styles.submit} onPress={()=>navigation.navigate("Login")}><Text>Login</Text></TouchableOpacity>}
-        
+          {isLogged ?<><Text style={styles.overtitleText}>Ya estas Logeado</Text><TouchableOpacity style={styles.submit}
+            onPress={() => navigation.navigate("Inicio")}><Text>Cerrar Sesion</Text></TouchableOpacity></>
+          :
+
+          <><TouchableOpacity style={styles.submit}
+              onPress={() => navigation.navigate("Login")}><Text>Login</Text></TouchableOpacity><TouchableOpacity style={styles.submit}
+              onPress={() => navigation.navigate("Register")}><Text>Register</Text></TouchableOpacity></>
+            }
+          
+      
+          
         </View>
       <View>
       </View>

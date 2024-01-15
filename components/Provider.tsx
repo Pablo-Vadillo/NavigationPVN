@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {userContext,userContextType} from "../components/UserContext"
+import { Register } from '../types/UserTypes'
 
 type userContext = {
   children: JSX.Element | JSX.Element[]
@@ -10,14 +11,22 @@ const UserProvider = (props:userContext) => {
 
 
     const [isLogged,setLogged] = useState (false)
-    const [user,setUser] = useState("")
+    const [user,setUser] = useState<Register>({
+        name:'',
+        email:'',
+        password:''
+    });
 
     const toggleLogin = () =>{
         setLogged(true)
     }
 
-    const userFunc = (userName:string) =>{
-        setUser(userName)
+    const userFunc = (userName:Register) =>{
+        setUser({
+        name:userName.name,
+        email:userName.email,
+        password:userName.password
+        })
     }
 
     const defaultValue: userContextType = {
