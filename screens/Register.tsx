@@ -7,11 +7,11 @@ import { postRegisteredUser } from '../services/LoginService';
 
 const background = require("../assets/background.png");
 
-type LoginProp = {
+type RegisterProp = {
   navigation: StackNavigationProp<any>;
 };
 
-const Login: React.FC<LoginProp> = ({ navigation }) => {
+const RegisterScreen: React.FC<RegisterProp> = ({ navigation }) => {
   const { user, userFunc, toggleLogin } = React.useContext(userContext);
 
   const handleInputChange = (field: string, value: string) => {
@@ -51,10 +51,14 @@ const Login: React.FC<LoginProp> = ({ navigation }) => {
       <ImageBackground source={background} resizeMode="cover" style={styles.backgroundImage} />
       <View style={styles.viewButtons}>
         <Text style={styles.subtitleText}>Introduce tus datos</Text>
-        <TextInput style={styles.inputText} placeholder="Email" value={user.email} onChangeText={email => handleInputChange("email", email)} />
-        <TextInput style={styles.inputText} placeholder="Usuario" value={user.name} onChangeText={userName => handleInputChange("name", userName)} />
-        <TextInput style={styles.inputText} placeholder="Contraseña" value={user.password} secureTextEntry={true} onChangeText={password => handleInputChange("password", password)} />
-        <TouchableOpacity style={styles.submit} onPress={() => handleRegister()}>
+        <TextInput style={styles.inputText} placeholder="Email" value={user.email} onChangeText={email =>
+          handleInputChange("email", email)} />
+        <TextInput style={styles.inputText} placeholder="Usuario" value={user.name} onChangeText={userName =>
+          handleInputChange("name", userName)} />
+        <TextInput style={styles.inputText} placeholder="Contraseña" value={user.password} secureTextEntry={true} onChangeText={password =>
+          handleInputChange("password", password)} />
+        <TouchableOpacity style={styles.submit} onPress={() =>
+          handleRegister()}>
           <Text style={styles.textButton}>Registrar</Text>
         </TouchableOpacity>
       </View>
@@ -63,7 +67,7 @@ const Login: React.FC<LoginProp> = ({ navigation }) => {
 };
 
 
-export default Login;
+export default RegisterScreen;
 
 const styles = StyleSheet.create({
   container: {

@@ -18,7 +18,7 @@ const UserProvider = (props:userContext) => {
     });
 
     const toggleLogin = () =>{
-        setLogged(true)
+        setLogged(!isLogged)
     }
 
     const userFunc = (userName:Register) =>{

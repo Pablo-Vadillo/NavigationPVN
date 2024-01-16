@@ -17,7 +17,7 @@ const DrawerModificaction = {
 };
 
 const CustomDrawerContent: React.FC<{ navigation: any }> = ({ navigation }) => {
-  const {isLogged} = React.useContext(userContext)
+  const { isLogged } = React.useContext(userContext)
 
   return (
     <DrawerContentScrollView style={styles.drawerContainer}>
@@ -26,20 +26,20 @@ const CustomDrawerContent: React.FC<{ navigation: any }> = ({ navigation }) => {
         onPress={() => navigation.navigate("Inicio")}
         labelStyle={styles.drawerItemLabel}
       />
-      {isLogged ? 
-      <DrawerItem
-        label="Portfolio"
-        onPress={() => navigation.navigate("Portfolio")}
-        labelStyle={styles.drawerItemLabel}
-      />:
-      <DrawerItem
-      label="Login"
-      onPress={() => navigation.navigate("Login")}
-      labelStyle={styles.drawerItemLabel}
-    />
+      {isLogged ?
+        <DrawerItem
+          label="Portfolio"
+          onPress={() => navigation.navigate("Portfolio")}
+          labelStyle={styles.drawerItemLabel}
+        /> :
+        <DrawerItem
+          label="Login"
+          onPress={() => navigation.navigate("Login")}
+          labelStyle={styles.drawerItemLabel}
+        />
       }
-      
-      
+
+
     </DrawerContentScrollView>
   );
 };
@@ -79,11 +79,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 20,
-    backgroundColor: 'transparent', 
+    backgroundColor: 'transparent',
   },
   backgroundImage: {
-    width: 40, 
-    height: 40, 
+    width: 40,
+    height: 40,
     marginRight: 10,
     borderRadius: 20,
   },
