@@ -39,9 +39,6 @@ const Bienvenida: React.FC<BienvenidaProp> = ({ navigation }) => {
               onPress={() => navigation.navigate("Login")}><Text>Login</Text></TouchableOpacity><TouchableOpacity style={styles.submit}
                 onPress={() => navigation.navigate("Register")}><Text>Register</Text></TouchableOpacity></>
           }
-
-
-
         </View>
         <View>
         </View>

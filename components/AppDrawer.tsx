@@ -2,13 +2,13 @@ import React from 'react';
 import { View, StyleSheet, Image, Text, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 import Bienvenida from '../screens/Bienvenida';
 import Login from '../screens/Login';
 import { userContext } from './UserContext';
 import BootonTabs from './BootonTabs';
 import Register from '../screens/Register';
+import SoundRecorderScreen from '../screens/SoundRecorderScreen';
 
 const backgroundHeader = require("../assets/background.png");
 const Drawer = createDrawerNavigator();
@@ -26,20 +26,24 @@ const CustomDrawerContent: React.FC<{ navigation: any }> = ({ navigation }) => {
         onPress={() => navigation.navigate("Inicio")}
         labelStyle={styles.drawerItemLabel}
       />
+      <DrawerItem
+            label="Record"
+            onPress={() => navigation.navigate("SoundRecorderScreen")}
+            labelStyle={styles.drawerItemLabel} 
+      />
+
       {isLogged ?
         <DrawerItem
           label="Portfolio"
           onPress={() => navigation.navigate("Portfolio")}
           labelStyle={styles.drawerItemLabel}
-        /> :
+        />:
         <DrawerItem
           label="Login"
           onPress={() => navigation.navigate("Login")}
           labelStyle={styles.drawerItemLabel}
         />
       }
-
-
     </DrawerContentScrollView>
   );
 };
@@ -56,7 +60,9 @@ const AppDrawer = () => {
           <Drawer.Screen name="Inicio" component={Bienvenida} />
           <Drawer.Screen name="Login" component={Login} />
           <Drawer.Screen name="Register" component={Register} />
+          <Drawer.Screen name="SoundRecorderScreen" component={SoundRecorderScreen} />
           <Drawer.Screen name="Portfolio" component={BootonTabs} />
+
 
         </Drawer.Navigator>
       </NavigationContainer>
